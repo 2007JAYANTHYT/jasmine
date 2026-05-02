@@ -408,11 +408,13 @@ function initScratchCard() {
         }
         const percent = (transparent / (pixels.length / 4)) * 100;
         
-        if (percent > 40) { // If 40% scratched
+        if (percent > 40) { // If 40-50% scratched
             isRevealed = true;
-            // Clear entire canvas to reveal
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
             canvas.style.pointerEvents = 'none'; // stop scratching
+            
+            // Smoothly fade out the canvas to reveal everything
+            canvas.style.transition = 'opacity 1.5s ease';
+            canvas.style.opacity = '0';
             
             // Wait a few seconds to let her read, then transition back
             setTimeout(() => {
@@ -434,7 +436,7 @@ function initScratchCard() {
                         setTimeout(createConfettiParticles, k * 800);
                     }
                 }, 2000);
-            }, 4000);
+            }, 4500); // 1.5s to fade out + 3s reading time
         }
     }
 
