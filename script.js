@@ -388,6 +388,7 @@ function initScratchCard() {
     ctx.fillText('Scratch Here', canvas.width/2, canvas.height/2);
 
     let isDrawing = false;
+    let isRevealed = false;
 
     function getMousePos(e) {
         const rect = canvas.getBoundingClientRect();
@@ -397,6 +398,46 @@ function initScratchCard() {
         };
     }
 
+    function checkScratched() {
+        if (isRevealed) return;
+        const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const pixels = imgData.data;
+        let transparent = 0;
+        for (let i = 0; i < pixels.length; i += 4) {
+            if (pixels[i + 3] < 128) transparent++;
+        }
+        const percent = (transparent / (pixels.length / 4)) * 100;
+        
+        if (percent > 40) { // If 40% scratched
+            isRevealed = true;
+            // Clear entire canvas to reveal
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            canvas.style.pointerEvents = 'none'; // stop scratching
+            
+            // Wait a few seconds to let her read, then transition back
+            setTimeout(() => {
+                const newPage = document.getElementById('new-wishes-page');
+                newPage.style.opacity = '0'; // Fade out overlay
+                
+                setTimeout(() => {
+                    newPage.style.display = 'none';
+                    document.querySelector('main').style.display = 'block'; // Show main page
+                    
+                    const bangaramSec = document.getElementById('final-bangaram-section');
+                    bangaramSec.style.display = 'block';
+                    
+                    // Smooth scroll to the huge text
+                    bangaramSec.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                    
+                    // Final massive confetti
+                    for(let k=0; k<3; k++) {
+                        setTimeout(createConfettiParticles, k * 800);
+                    }
+                }, 2000);
+            }, 4000);
+        }
+    }
+
     function scratch(e) {
         if (!isDrawing) return;
         e.preventDefault();
@@ -404,8 +445,11 @@ function initScratchCard() {
         
         ctx.globalCompositeOperation = 'destination-out';
         ctx.beginPath();
-        ctx.arc(pos.x, pos.y, 25, 0, Math.PI * 2);
+        ctx.arc(pos.x, pos.y, 30, 0, Math.PI * 2);
         ctx.fill();
+        
+        // Check scratching progress every few frames
+        if(Math.random() > 0.5) checkScratched();
     }
 
     canvas.addEventListener('mousedown', (e) => { isDrawing = true; scratch(e); });
