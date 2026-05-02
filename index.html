@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday My Love 💕</title>
+    <meta name="description" content="A special birthday surprise for the most beautiful person in my life">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Libraries from the list -->
+    <!-- Lenis Smooth Scroll -->
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
+    <!-- AOS - Animate on Scroll -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Preloader / Entry Gate -->
+    <div id="preloader">
+        <div class="preloader-content">
+            <div class="heart-container">
+                <div class="heart"></div>
+            </div>
+            <h2 class="preloader-text">I made something special for you...</h2>
+            <button id="enter-btn" class="magic-btn">
+                <span>Open Your Surprise 💝</span>
+                <div class="btn-glow"></div>
+            </button>
+        </div>
+        <canvas id="preloader-canvas"></canvas>
+    </div>
+
+    <!-- Floating Hearts Background -->
+    <div id="floating-hearts"></div>
+
+    <!-- Three.js Background -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Mouse Trail Canvas -->
+    <canvas id="mouse-trail"></canvas>
+
+    <!-- Audio Toggle -->
+    <button id="audio-toggle" class="audio-btn" title="Toggle Music">
+        <span class="audio-icon">🎵</span>
+    </button>
+
+    <!-- Main Content -->
+    <main id="main-content" style="display:none;">
+
+        <!-- Section 1: Hero / Birthday Wish -->
+        <section id="hero" class="section hero-section">
+            <div class="hero-content">
+                <div class="sparkle-container" id="sparkles"></div>
+                <p class="hero-date" data-aos="fade-down" data-aos-delay="300">May 16th</p>
+                <h1 class="hero-title" data-aos="zoom-in" data-aos-delay="600">
+                    <span class="line1">Happy 18th Birthday Bangaram</span>
+                    <span class="line2">My Beautiful</span>
+                    <span class="line3">❤️ Jasmine ❤️</span>
+                </h1>
+                <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="900">
+                    Nee navvu naa prapancham, nee prema naa oopiri<br>
+                    <em>Your smile is my world, your love is my breath</em>
+                </p>
+                <div class="scroll-hint" data-aos="fade-up" data-aos-delay="1200">
+                    <span>Scroll Down for More Surprises</span>
+                    <div class="scroll-arrow"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Countdown -->
+        <section id="countdown-section" class="section">
+            <div class="section-inner">
+                <h2 class="section-title" data-aos="fade-up">
+                    <span class="telugu-text">Entha rojulu migilayi?</span><br>
+                    Counting Down to Your Special Day
+                </h2>
+                <div class="countdown-grid" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="countdown-card">
+                        <span class="count-number" id="days">00</span>
+                        <span class="count-label">Days</span>
+                    </div>
+                    <div class="countdown-card">
+                        <span class="count-number" id="hours">00</span>
+                        <span class="count-label">Hours</span>
+                    </div>
+                    <div class="countdown-card">
+                        <span class="count-number" id="minutes">00</span>
+                        <span class="count-label">Minutes</span>
+                    </div>
+                    <div class="countdown-card">
+                        <span class="count-number" id="seconds">00</span>
+                        <span class="count-label">Seconds</span>
+                    </div>
+                </div>
+                <p class="countdown-subtitle" data-aos="fade-up" data-aos-delay="500">
+                    ⏳ Until I can say Happy Birthday to my fav person on this entire world! ⏳
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 2.5: Interactive Memory Gallery -->
+        <section id="gallery-section" class="section">
+            <div class="section-inner">
+                <h2 class="section-title" data-aos="fade-up">
+                    <span class="telugu-text">Mana memories</span><br>
+                    Our Magical Moments ✨
+                </h2>
+                <div class="gallery-container" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="gallery-track">
+                        <img src="jas4.jpeg" class="gallery-img" alt="Memory 1">
+                        <img src="jas2.jpeg" class="gallery-img" alt="Memory 2">
+                        <img src="jas3.jpeg" class="gallery-img" alt="Memory 3">
+                        <img src="jas5.jpg" class="gallery-img" alt="Memory 4">
+                        <img src="jas6.jpeg" class="gallery-img" alt="Memory 6">
+                        <img src="jas7.jpeg" class="gallery-img" alt="Memory 7">
+                        <img src="jas8.jpeg" class="gallery-img" alt="Memory 8">
+                        <img src="jas9.jpeg" class="gallery-img" alt="Memory 9">
+                        <img src="jas10.jpeg" class="gallery-img" alt="Memory 10">
+                        <img src="jas11.jpeg" class="gallery-img" alt="Memory 11">
+                        <img src="jas12.jpeg" class="gallery-img" alt="Memory 12">
+                        <img src="jas13.jpeg" class="gallery-img" alt="Memory 13">
+                        <img src="jas14.jpeg" class="gallery-img" alt="Memory 14">
+                        <img src="jas15.jpeg" class="gallery-img" alt="Memory 15">
+                        <img src="jas16.jpeg" class="gallery-img" alt="Memory 16">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Our Journey Timeline -->
+        <section id="timeline-section" class="section">
+            <div class="section-inner">
+                <h2 class="section-title" data-aos="fade-up">
+                    <span class="telugu-text">Mana prema katha</span><br>
+                    Our Beautiful Journey 💕
+                </h2>
+                <div class="timeline">
+                    <div class="timeline-item left" data-aos="fade-right">
+                        <div class="timeline-card">
+                            <div class="timeline-icon">📱</div>
+                            <h3>When We Met</h3>
+                            <p class="timeline-telugu">Modatisari ninnu online lo kalisinappudu...</p>
+                            <p>It all started on June 17, 2024. I didn't know then that you would become my whole world.
+                            </p>
+                            <span class="timeline-date">June 17, 2024</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" data-aos="fade-left">
+                        <div class="timeline-card">
+                            <div class="timeline-icon">💖</div>
+                            <h3>The Day You Said Yes</h3>
+                            <p class="timeline-telugu">Naa life lo 1st happiest day adhi</p>
+                            <p>At exactly 8:37, you accepted me. That became the 1st happiest day of my life.</p>
+                            <span class="timeline-date">June 26, 2024</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" data-aos="fade-right">
+                        <div class="timeline-card">
+                            <div class="timeline-icon">💋</div>
+                            <h3>Our First Meet & Kiss</h3>
+                            <p class="timeline-telugu">Bus stand dhaggara kalisi Bel park ki vellam</p>
+                            <p>Our 1st meet! We went to Bel park. I held you in my hands and gave you my first ever kiss
+                                on your cheeks. My 2nd happiest day!</p>
+                            <span class="timeline-date">July 3, 2024</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" data-aos="fade-left">
+                        <div class="timeline-card">
+                            <div class="timeline-icon">🛕</div>
+                            <h3>First Temple Visit</h3>
+                            <p class="timeline-telugu">Gudiki velli chala happy ga time spend chesam</p>
+                            <p>Our 2nd meet. We went to the temple together for the first time. Such a peaceful and
+                                happy memory.</p>
+                            <span class="timeline-date">August 15, 2024</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" data-aos="fade-right">
+                        <div class="timeline-card">
+                            <div class="timeline-icon">💍</div>
+                            <h3>Pre-Birthday Celebration</h3>
+                            <p class="timeline-telugu">Nee kosam silver ring theesukunnanu</p>
+                            <p>Our 26th meet! We celebrated your birthday in advance, bought silver rings, and got
+                                matching bracelets.</p>
+                            <span class="timeline-date">April 15</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" data-aos="fade-left">
+                        <div class="timeline-card">
+                            <div class="timeline-icon">🌈</div>
+                            <h3>Into Our Second Year</h3>
+                            <p class="timeline-telugu">Manam eppatiki kalise untam potti</p>
+                            <p>"The new journey of our second year starts today. Let's make the best new memories. I
+                                love you, potti."</p>
+                            <span class="timeline-date">June 26, 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Love Quotes in Telugu-English -->
+        <section id="quotes-section" class="section">
+            <div class="section-inner">
+                <h2 class="section-title" data-aos="fade-up">
+                    <span class="telugu-text">Naa gunde matalu</span><br>
+                    Words From My Heart 💌
+                </h2>
+                <div class="quotes-carousel" data-aos="fade-up" data-aos-delay="300">
+                    <div class="quote-slider" id="quote-slider">
+                        <div class="quote-card active">
+                            <div class="quote-emoji">🌹</div>
+                            <p class="quote-telugu">Nuvvu leni roju, roje kadu naku</p>
+                            <p class="quote-english">"A day without you is not a day for me at all"</p>
+                        </div>
+                        <div class="quote-card">
+                            <div class="quote-emoji">🌙</div>
+                            <p class="quote-telugu">Nee navvu chuste chalu, naa badhalanni mayam</p>
+                            <p class="quote-english">"Just seeing your smile makes all my pain disappear"</p>
+                        </div>
+                        <div class="quote-card">
+                            <div class="quote-emoji">🔥</div>
+                            <p class="quote-telugu">Veyyi godavalu ochina , okka kshanam kooda ninnu vadalanu nanna</p>
+                            <p class="quote-english">"Even after a thousand fights, I won't leave you for a second"</p>
+                        </div>
+                        <div class="quote-card">
+                            <div class="quote-emoji">💫</div>
+                            <p class="quote-telugu">Nee kallalo naa future kanipistundi</p>
+                            <p class="quote-english">"I can see my future in your eyes"</p>
+                        </div>
+                        <div class="quote-card">
+                            <div class="quote-emoji">🦋</div>
+                            <p class="quote-telugu">Prema ante ento nee valle telisindi</p>
+                            <p class="quote-english">"I learned what love means only because of you"</p>
+                        </div>
+                        <div class="quote-card">
+                            <div class="quote-emoji">⭐</div>
+                            <p class="quote-telugu">Neekosam veyi janmalu etthadaniki  aiyna siddham</p>
+                            <p class="quote-english">"I'm ready to take a thousand births just for you"</p>
+                        </div>
+                        <div class="quote-card">
+                            <div class="quote-emoji">🌺</div>
+                            <p class="quote-telugu">Neetho gadipina prathi kshanam naa jeevithamlo amulyam</p>
+                            <p class="quote-english">"Every moment spent with you is priceless in my life"</p>
+                        </div>
+                        <div class="quote-card">
+                            <div class="quote-emoji">💝</div>
+                            <p class="quote-telugu">Godavalu mana premani balanga chesayi, balaheenanga kadu</p>
+                            <p class="quote-english">"Our fights made our love stronger, not weaker"</p>
+                        </div>
+                    </div>
+                    <div class="quote-nav">
+                        <button class="quote-prev" id="quote-prev">←</button>
+                        <div class="quote-dots" id="quote-dots"></div>
+                        <button class="quote-next" id="quote-next">→</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Fights But Still Together -->
+        <section id="fights-section" class="section">
+            <div class="section-inner">
+                <h2 class="section-title" data-aos="fade-up">
+                    <span class="telugu-text">Godavalu enni unna... mana prema mundu avi em paniki raaledu!</span><br>
+                    We Fight, But We Never Let Go 🔥❤️
+                </h2>
+                <div class="fights-container">
+                    <div class="fight-card" data-aos="flip-left" data-aos-delay="100">
+                        <div class="fight-front">
+                            <span class="fight-emoji">😤</span>
+                            <p>When we argue about small things</p>
+                        </div>
+                        <div class="fight-back">
+                            <span class="fight-emoji">🤗</span>
+                            <p>But then you say sorry first and melt my heart</p>
+                            <span class="telugu-small">Nuvvu "sorry" chepthe naa kopam karigipothundi</span>
+                        </div>
+                    </div>
+                    <div class="fight-card" data-aos="flip-left" data-aos-delay="200">
+                        <div class="fight-front">
+                            <span class="fight-emoji">😠</span>
+                            <p>When you don't reply to my messages</p>
+                        </div>
+                        <div class="fight-back">
+                            <span class="fight-emoji">📱</span>
+                            <p>But I keep texting because I can't stay away and im scared </p>
+                            <span class="telugu-small">Neeku message cheyakunda undalenu</span>
+                        </div>
+                    </div>
+                    <div class="fight-card" data-aos="flip-left" data-aos-delay="300">
+                        <div class="fight-front">
+                            <span class="fight-emoji">💔</span>
+                            <p>When we say "I'm done"</p>
+                        </div>
+                        <div class="fight-back">
+                            <span class="fight-emoji">💕</span>
+                            <p>But come back in 5 minutes because we can't breathe without each other</p>
+                            <span class="telugu-small">Okaru lekunda okaram undalem</span>
+                        </div>
+                    </div>
+                    <div class="fight-card" data-aos="flip-left" data-aos-delay="400">
+                        <div class="fight-front">
+                            <span class="fight-emoji">🌧️</span>
+                            <p>When tears fall during fights</p>
+                        </div>
+                        <div class="fight-back">
+                            <span class="fight-emoji">🌈</span>
+                            <p>But after the rain, our rainbow shines even brighter</p>
+                            <span class="telugu-small">Kanneella tharvatha mana prema inka andanga untundi</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="fights-conclusion" data-aos="zoom-in" data-aos-delay="500">
+                    <span class="big-text">We don't have a perfect relationship.</span><br>
+                    <span class="big-text glow-text">We have a REAL one. ❤️‍🔥</span><br>
+                    <span class="telugu-text">Manadi perfect kadu... kani nijamaina prema!</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 6: Reasons I Love You (Reveal) -->
+        <section id="reasons-section" class="section">
+            <div class="section-inner">
+                <h2 class="section-title" data-aos="fade-up">
+                    <span class="telugu-text">Nenu ninnu enduku premisthano telusa?</span><br>
+                    Reasons I Love You 💗
+                </h2>
+                <p class="reveal-hint" data-aos="fade-up">Click each card to reveal a surprise! 🎁</p>
+                <div class="reasons-grid">
+                    <div class="reason-card" data-aos="fade-up" data-aos-delay="100" onclick="revealReason(this)">
+                        <div class="reason-front">
+                            <span>🎁</span>
+                            <p>Tap to Reveal #1</p>
+                        </div>
+                        <div class="reason-back">
+                            <span>🤫</span>
+                            <p>Because of that secret you told me...</p>
+                            <span class="telugu-small">"Don't leave me... adhey nen chepali anukuna secret..."</span>
+                        </div>
+                    </div>
+                    <div class="reason-card" data-aos="fade-up" data-aos-delay="200" onclick="revealReason(this)">
+                        <div class="reason-front">
+                            <span>🎁</span>
+                            <p>Tap to Reveal #2</p>
+                        </div>
+                        <div class="reason-back">
+                            <span>🍦</span>
+                            <p>Because I know all your favorites</p>
+                            <span class="telugu-small">DBC Ice cream, Red Velvet cake, Peach color and Me! 😁</span>
+                        </div>
+                    </div>
+                    <div class="reason-card" data-aos="fade-up" data-aos-delay="300" onclick="revealReason(this)">
+                        <div class="reason-front">
+                            <span>🎁</span>
+                            <p>Tap to Reveal #3</p>
+                        </div>
+                        <div class="reason-back">
+                            <span>🤝</span>
+                            <p>Because of our promises</p>
+                            <span class="telugu-small">The very first promise We made: "To Never Leave Eachother In Any Situation!."</span>
+                        </div>
+                    </div>
+                    <div class="reason-card" data-aos="fade-up" data-aos-delay="400" onclick="revealReason(this)">
+                        <div class="reason-front">
+                            <span>🎁</span>
+                            <p>Tap to Reveal #4</p>
+                        </div>
+                        <div class="reason-back">
+                            <span>🐟</span>
+                            <p>Because of your cute hates & loves</p>
+                            <span class="telugu-small">You hate Pappu with rice, but you love Fish!</span>
+                        </div>
+                    </div>
+                    <div class="reason-card" data-aos="fade-up" data-aos-delay="500" onclick="revealReason(this)">
+                        <div class="reason-front">
+                            <span>🎁</span>
+                            <p>Tap to Reveal #5</p>
+                        </div>
+                        <div class="reason-back">
+                            <span>🫂</span>
+                            <p>After every fight, you still choose me.</p>
+                            <span class="telugu-small">Prathi godava tharvatha nanne enchukuntavu</span>
+                        </div>
+                    </div>
+                    <div class="reason-card" data-aos="fade-up" data-aos-delay="600" onclick="revealReason(this)">
+                        <div class="reason-front">
+                            <span>🎁</span>
+                            <p>Tap to Reveal #6</p>
+                        </div>
+                        <div class="reason-back">
+                            <span>♾️</span>
+                            <p>Because you are my today, my tomorrow, my forever</p>
+                            <span class="telugu-small">Nuvve naa ee roju, repu, eppatiki</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Love Letter -->
+        <section id="letter-section" class="section">
+            <div class="section-inner">
+                <h2 class="section-title" data-aos="fade-up">
+                    <span class="telugu-text">Naa priyamaina Jasmine ki</span><br>
+                    A Letter For You 💌
+                </h2>
+                <div class="letter-container" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="letter-paper">
+                        <p class="letter-greeting">My Dearest Jasmine,</p>
+                        <p>On your 18th birthday, I want you to know something — you are the most incredible person I've
+                            ever known. These 2 years with you have been the most beautiful chapter of my life.</p>
+                        <p>We've laughed together, cried together, fought like crazy, and loved even crazier. 😄
+                            Remember all those silly fights? Those late-night arguments? Those "I'm never talking to you
+                            again" moments that lasted exactly 5 minutes? 😂</p>
+                        <p class="letter-telugu">Manam chala godavalu chesukonnam... kani okkasari kooda ninnu
+                            vadalalani anukoledu. Nuvvu naa life lo vachaka, naa life ki meaning vachindi.</p>
+                        <p>Every fight taught me how much I can't live without you. Every tear showed me how deep my
+                            love runs. And every time we came back to each other, it proved that what we have is REAL.
+                        </p>
+                        <p class="letter-telugu">Neeku happy 18th birthday cheppadam kante, neetho ee life share
+                            chesukovadam naa adrushtam ani cheppalanundi.</p>
+                        <p>Happy 18th Birthday, my love. Here's to 2 years down and a lifetime to go. I love you more
+                            than words in any language can ever express. ❤️</p>
+                        <p class="letter-sign">Forever yours,<br>Your Boy ❤️</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: Birthday Wish with Confetti -->
+        <section id="wish-section" class="section">
+            <div class="section-inner">
+                <div class="wish-content" data-aos="zoom-in">
+                    <div class="cake-emoji">🎂</div>
+                    <h2 class="wish-title">
+                        <span class="telugu-text">Puttinaroju Subhakankshalu!</span>
+                    </h2>
+                    <h1 class="wish-main">Happy 18th Birthday<br>Jasmine! 🎉</h1>
+                    <p class="wish-subtitle">
+                        Naa prema, naa pranam, naa anni nuvve<br>
+                        <em>My love, my life, my everything — it's all you</em>
+                    </p>
+                    <button class="magic-btn confetti-btn" id="confetti-btn" onclick="launchConfetti()">
+                        <span>🎉 Blow the Candles! 🎂</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- NEW WISHES PAGE (Hidden initially) -->
+    <div id="new-wishes-page" style="display: none;">
+        <div class="new-wishes-content">
+            <h1 class="elegant-title" data-aos="fade-down">Happy 18th Birthday,<br>My Love! ✨</h1>
+            <p class="elegant-text" data-aos="fade-up">Welcome to your new chapter. Every moment with you is magic, and I can't wait to see what this year brings for us.</p>
+            
+            <div class="scratch-wrapper" data-aos="zoom-in" data-aos-delay="500">
+                <p class="scratch-instruction">Scratch below for your final surprise...</p>
+                <div class="scratch-container">
+                    <div class="secret-content">
+                        <h3>My Promise to You</h3>
+                        <p>I will love you until the stars burn out. You are my everything, Mummmyyluuuu💕. Happy 18th Birthday! Nannalluu</p>
+                        <span class="telugu-small">Ninnu pranam kante ekkuva premisthanu...</span>
+                    </div>
+                    <canvas id="scratch-card"></canvas>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer" style="background: transparent; margin-top: 50px;">
+                <p>Made with ❤️ for the love of my life</p>
+                <p class="footer-telugu">Nee kosam Naa gunde kottukuntundi 💓</p>
+                <p class="footer-sub">© 2026 — Our Love Story</p>
+            </footer>
+        </div>
+    </div>
+
+
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Libraries -->
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
