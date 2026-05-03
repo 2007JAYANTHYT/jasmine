@@ -24,32 +24,58 @@ AOS.init({
     offset: 100,
 });
 
+// Audio Setup
+const bgAudio = new Audio('song.webm');
+let isPlaying = false;
+
+// Loop back to 10 seconds when the song ends
+bgAudio.addEventListener('ended', () => {
+    bgAudio.currentTime = 10;
+    bgAudio.play();
+});
+
 // Preloader & Entry Logic
 document.addEventListener('DOMContentLoaded', () => {
     const enterBtn = document.getElementById('enter-btn');
     const preloader = document.getElementById('preloader');
     const mainContent = document.getElementById('main-content');
-    
-    // Background Audio setup (Assuming there's an audio file, using a placeholder logic for now. User can add real audio later)
-    // For real implementation: const audio = new Audio('path_to_romantic_song.mp3');
-    // audio.loop = true;
 
     enterBtn.addEventListener('click', () => {
-        // Fade out preloader
-        preloader.style.opacity = '0';
+        // Set initial states for hero before showing main content
+        gsap.set('.hero-title span, .hero-subtitle', { opacity: 0 });
+        gsap.set('.hero-date', { text: "", opacity: 1 });
+
+        // Reveal content immediately so it's behind the doors
+        mainContent.style.display = 'block';
         
+        // Refresh AOS and ScrollTrigger so animations trigger
+        
+        ScrollTrigger.refresh();
+        
+        // Trigger the door opening animation
+        preloader.classList.add('open');
+
+        // Hero Intro Animation
+        const tl = gsap.timeline({ delay: 0.5 });
+        tl.to('.hero-date', {text: "May 16th", duration: 1.2, ease: "none"})
+          .to('.hero-title .line1', {y: 0, opacity: 1, duration: 0.8, ease: "power3.out", startAt: {y: 30}}, "-=0.2")
+          .to('.hero-title .line2', {x: 0, opacity: 1, duration: 0.8, ease: "power3.out", startAt: {x: -30}}, "-=0.4")
+          .to('.hero-title .line3', {scale: 1, opacity: 1, duration: 1.2, ease: "elastic.out(1, 0.4)", startAt: {scale: 0.5}}, "-=0.2")
+          .to('.hero-subtitle', {y: 0, opacity: 1, duration: 0.8, ease: "power3.out", startAt: {y: 30}}, "-=0.8");
+        
+        // Start audio from 10 seconds
+        bgAudio.currentTime = 10;
+        bgAudio.play().then(() => {
+            isPlaying = true;
+            const toggle = document.getElementById('audio-toggle');
+            toggle.classList.add('playing');
+            toggle.innerHTML = '<span class="audio-icon">🎶</span>';
+        }).catch(e => console.log('Autoplay prevented:', e));
+
+        // Remove preloader from DOM after transition
         setTimeout(() => {
             preloader.style.display = 'none';
-            mainContent.style.display = 'block';
-            
-            // Refresh AOS and ScrollTrigger after content is visible
-            AOS.refresh();
-            ScrollTrigger.refresh();
-            
-            // Start audio if added
-            // audio.play();
-            // document.getElementById('audio-toggle').classList.add('playing');
-        }, 1000);
+        }, 1500);
     });
 
     // Create floating hearts background
@@ -58,17 +84,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Audio Toggle Logic
 const audioBtn = document.getElementById('audio-toggle');
-let isPlaying = false;
 audioBtn.addEventListener('click', () => {
     isPlaying = !isPlaying;
     if(isPlaying) {
         audioBtn.classList.add('playing');
         audioBtn.innerHTML = '<span class="audio-icon">🎶</span>';
-        // audio.play();
+        bgAudio.play();
     } else {
         audioBtn.classList.remove('playing');
         audioBtn.innerHTML = '<span class="audio-icon">🎵</span>';
-        // audio.pause();
+        bgAudio.pause();
     }
 });
 
@@ -338,12 +363,11 @@ function initThreeJS() {
 initThreeJS();
 
 // GSAP Animations for specific elements
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
 // Parallax for Hero
 gsap.to('.hero-title', {
     y: 100,
-    opacity: 0.2,
     ease: "none",
     scrollTrigger: {
         trigger: ".hero-section",
@@ -352,6 +376,7 @@ gsap.to('.hero-title', {
         scrub: true
     }
 });
+
 
 // Timeline line drawing
 gsap.from('.timeline::after', {
@@ -363,6 +388,34 @@ gsap.from('.timeline::after', {
         end: "bottom center",
         scrub: true
     }
+});
+
+// Timeline heart moving down
+gsap.to('.timeline-heart', {
+    top: "100%",
+    ease: "none",
+    scrollTrigger: {
+        trigger: ".timeline",
+        start: "top center",
+        end: "bottom center",
+        scrub: true
+    }
+});
+
+// Timeline Items Slide & Meet Animation
+gsap.utils.toArray('.timeline-item').forEach(item => {
+    let isLeft = item.classList.contains('left');
+    gsap.from(item, {
+        x: isLeft ? -150 : 150,
+        opacity: 0,
+        ease: "none",
+        scrollTrigger: {
+            trigger: item,
+            start: "top 85%", // Starts animating when 15% into viewport
+            end: "top 50%",   // Meets perfectly at the center
+            scrub: 1          // Smooth scrub
+        }
+    });
 });
 
 // ==========================================
@@ -574,3 +627,32 @@ document.addEventListener('click', (e) => {
     });
 });
 
+
+// Global GSAP Scroll Animations
+const globalScrubOptions = {
+    start: 'top 95%',
+    end: 'top 60%',
+    scrub: 1
+};
+
+gsap.utils.toArray('.gsap-slide-right').forEach(el => {
+    gsap.from(el, { x: -100, opacity: 0, ease: 'none', scrollTrigger: { trigger: el, ...globalScrubOptions } });
+});
+
+gsap.utils.toArray('.gsap-slide-left').forEach(el => {
+    gsap.from(el, { x: 100, opacity: 0, ease: 'none', scrollTrigger: { trigger: el, ...globalScrubOptions } });
+});
+
+gsap.utils.toArray('.gsap-slide-up').forEach(el => {
+    gsap.from(el, { y: 100, opacity: 0, ease: 'none', scrollTrigger: { trigger: el, ...globalScrubOptions } });
+});
+
+gsap.utils.toArray('.gsap-zoom-in').forEach(el => {
+    gsap.from(el, { scale: 0.8, opacity: 0, ease: 'none', scrollTrigger: { trigger: el, ...globalScrubOptions } });
+});
+
+const countdownCards = gsap.utils.toArray('.countdown-card');
+if (countdownCards.length >= 4) {
+    gsap.from(countdownCards.slice(0, 2), { x: -150, opacity: 0, ease: 'none', scrollTrigger: { trigger: '.countdown-grid', ...globalScrubOptions }});
+    gsap.from(countdownCards.slice(2, 4), { x: 150, opacity: 0, ease: 'none', scrollTrigger: { trigger: '.countdown-grid', ...globalScrubOptions }});
+}
