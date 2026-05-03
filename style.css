@@ -927,20 +927,7 @@ body {
     opacity: 0.5;
 }
 
-/* Responsive */
-@media screen and (max-width: 768px) {
-    .hero-title { font-size: 3rem; }
-    .section-title { font-size: 2rem; }
-    .timeline::after { left: 31px; }
-    .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
-    .timeline-item.right { left: 0; }
-    .timeline-item.left::after, .timeline-item.right::after { left: 21px; }
-    .countdown-card { min-width: 120px; padding: 20px; }
-    .count-number { font-size: 2.5rem; }
-    .letter-paper { padding: 30px 20px; font-size: 1.2rem; }
-    .letter-paper::before { left: 15px; }
-    .wish-main { font-size: 2.5rem; }
-}
+/* Responsive variables and adjustments moved to the bottom of the file */
 
 
 /* Gallery Styles */
@@ -983,7 +970,8 @@ body {
 /* Scratch Card */
 .scratch-container {
     position: relative;
-    width: 350px;
+    width: 100%;
+    max-width: 350px;
     height: 250px;
     margin: 0 auto;
     border-radius: 15px;
@@ -1160,9 +1148,94 @@ body.fire-burn-active .fire-overlay {
     font-style: italic;
 }
 
+/* =======================================
+   Responsive / Mobile Styles
+======================================= */
 @media screen and (max-width: 768px) {
-    .bangaram-title { font-size: 3rem; }
-    .bangaram-quote { font-size: 1.5rem; }
-    .bangaram-telugu { font-size: 1.1rem; }
+    /* Preloader */
+    .preloader-text { font-size: 1.8rem; }
+    
+    /* Section Basics */
+    .section { padding: 60px 10px; }
+    .section-title { font-size: 1.8rem; margin-bottom: 25px; }
+    .telugu-text { font-size: 1.1rem; }
+
+    /* Hero Section */
+    .hero-title { font-size: 2.5rem; }
+    .hero-title .line2 { font-size: 1.2em; }
+    .hero-title .line3 { font-size: 1.1em; }
+    .hero-subtitle { font-size: 0.95rem; padding: 0 10px; }
+
+    /* Countdown */
+    .countdown-grid { gap: 10px; }
+    .countdown-card { min-width: auto; padding: 10px; flex: 1 1 40%; }
+    .count-number { font-size: 1.8rem; }
+    .count-label { font-size: 0.7rem; }
+    .countdown-subtitle { font-size: 0.9rem; padding: 0 5px; }
+    
+    /* Gallery */
+    .gallery-track { gap: 10px; }
+    .gallery-img { width: calc(50% - 10px); height: auto; aspect-ratio: 3/4; max-width: none; }
+
+    /* Timeline */
+    .timeline::after { left: 50%; }
+    .timeline-heart { left: 50%; font-size: 20px; transform: translateX(-50%) translateY(-50%); }
+    .timeline-item { width: 50%; padding: 10px; }
+    .timeline-item.right { left: 50%; }
+    .timeline-item.left::after { right: -6px; width: 12px; height: 12px; border-width: 2px; }
+    .timeline-item.right::after { left: -6px; width: 12px; height: 12px; border-width: 2px; }
+    .timeline-card { padding: 10px; }
+    .timeline-card h3 { font-size: 1rem; margin-bottom: 5px; }
+    .timeline-icon { font-size: 1.2rem; margin-bottom: 5px; }
+    .timeline-card p { font-size: 0.75rem; margin-bottom: 5px; line-height: 1.3; }
+    .timeline-telugu { font-size: 0.7rem; margin-bottom: 5px; }
+    .timeline-date { font-size: 0.65rem; padding: 3px 8px; margin-top: 5px; }
+
+    /* Quotes */
+    .quote-card { padding: 15px; }
+    .quote-emoji { font-size: 2rem; margin-bottom: 10px; }
+    .quote-telugu { font-size: 1rem; }
+    .quote-english { font-size: 1.2rem; }
+    .quote-slider { min-height: 250px; }
+
+    /* Fights & Reasons */
+    .fights-container { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .fight-card { height: 160px; }
+    .fight-front, .fight-back { padding: 10px; }
+    .fight-emoji { font-size: 1.5rem; margin-bottom: 5px; }
+    .fight-front p, .fight-back p { font-size: 0.75rem; line-height: 1.2; }
+    .fight-back .telugu-small { font-size: 0.65rem; margin-top: 5px; }
+
+    .reasons-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .reason-card { min-height: 140px; }
+    .reason-front span { font-size: 1.5rem; margin-bottom: 5px; }
+    .reason-back span { font-size: 1.5rem; margin-bottom: 5px; }
+    .reason-front p { font-size: 0.75rem; }
+    .reason-back p { font-size: 0.75rem; line-height: 1.2; }
+    .reason-back .telugu-small { font-size: 0.65rem; }
+
+    /* Letter */
+    .letter-paper { padding: 25px 15px; font-size: 1rem; }
+    .letter-paper::before { left: 10px; }
+    .letter-greeting { font-size: 1.3rem; margin-bottom: 15px; }
+    .letter-sign { font-size: 1.3rem; margin-top: 20px; }
+    .letter-telugu { padding: 10px !important; font-size: 0.95rem; }
+
+    /* Wish Section */
+    .wish-content { padding: 30px 15px; }
+    .wish-main { font-size: 2rem; }
+    .cake-emoji { font-size: 3rem; margin-bottom: 10px; }
+    .magic-btn { padding: 10px 20px; font-size: 0.9rem; }
+
+    /* Scratch Card & Wishes Page */
+    .elegant-title { font-size: 2rem; }
+    .elegant-text { font-size: 1rem; margin-bottom: 20px; padding: 0 5px; }
+    .scratch-instruction { font-size: 1.2rem; }
+    
+    /* Final Bangaram */
+    .bangaram-title { font-size: 2rem; }
+    .bangaram-quote { font-size: 1.1rem; }
+    .bangaram-telugu { font-size: 0.9rem; }
+    .bangaram-quote-box { padding: 15px; margin: 0 10px; }
 }
 

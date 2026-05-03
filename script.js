@@ -427,7 +427,8 @@ function initScratchCard() {
     const ctx = canvas.getContext('2d');
     
     // Set canvas size to match container
-    canvas.width = 350;
+    const container = canvas.parentElement;
+    canvas.width = container.clientWidth || 350;
     canvas.height = 250;
 
     // Fill with a nice cover
